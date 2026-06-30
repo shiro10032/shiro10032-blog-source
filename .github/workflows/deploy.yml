@@ -36,7 +36,8 @@ jobs:
       - name: Deploy to GitHub Pages
         uses: JamesIves/github-pages-deploy-action@v4
         with:
+          repository-name: shiro10032/shiro10032.github.io
           branch: main
           folder: my-blog/public
           clean: true
-          token: ${{ secrets.GITHUB_TOKEN }}
+          token: ${{ secrets.HEXO_DEPLOY_TOKEN }}
