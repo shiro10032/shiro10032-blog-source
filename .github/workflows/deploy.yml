@@ -35,7 +35,7 @@ jobs:
           DEPLOY_KEY: ${{ secrets.HEXO_DEPLOY_TOKEN }}
         run: |
           cd public
-          git init
+          git init -b main
           git config user.name "shiro10032"
           git config user.email "2391760938@qq.com"
           git add -A
