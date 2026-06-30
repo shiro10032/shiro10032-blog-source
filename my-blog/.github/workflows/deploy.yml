@@ -1,8 +1,15 @@
-name: Deploy Hexo
+# 用这个完整的工作流
+echo "name: Deploy Hexo
 
 on:
   push:
     branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pages: write
+  id-token: write
 
 jobs:
   build:
@@ -14,10 +21,11 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: '20'
+          cache: 'npm'
           
       - name: Install dependencies
         run: |
-          npm install
+          npm ci
           npm install hexo-cli -g
           
       - name: Generate
@@ -31,3 +39,4 @@ jobs:
           branch: main
           folder: public
           clean: true
+          token: \${{ secrets.GITHUB_TOKEN }}" > .github\workflows\deploy.yml
