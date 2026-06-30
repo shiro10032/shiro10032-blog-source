@@ -8,20 +8,19 @@ on:
 permissions:
   contents: write
 
-defaults:
-  run:
-    working-directory: my-blog
-
 jobs:
   build:
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: my-blog
     steps:
       - uses: actions/checkout@v4
 
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: '20'
+          node-version: '24'
           cache: 'npm'
           cache-dependency-path: my-blog/package-lock.json
 
