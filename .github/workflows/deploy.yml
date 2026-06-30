@@ -31,10 +31,13 @@ jobs:
           npx hexo generate
 
       - name: Deploy to GitHub Pages
-        uses: JamesIves/github-pages-deploy-action@v4
-        with:
-          repository-name: shiro10032/shiro10032.github.io
-          branch: main
-          folder: my-blog/public
-          clean: true
-          token: ${{ secrets.HEXO_DEPLOY_TOKEN }}
+        env:
+          DEPLOY_KEY: ${{ secrets.HEXO_DEPLOY_TOKEN }}
+        run: |
+          cd public
+          git init
+          git config user.name "shiro10032"
+          git config user.email "2391760938@qq.com"
+          git add -A
+          git commit -m "deploy: $(date '+%Y-%m-%d %H:%M:%S')"
+          git push -f "https://shiro10032:$DEPLOY_KEY@github.com/shiro10032/shiro10032.github.io.git" main
