@@ -1,5 +1,4 @@
-# 用这个完整的工作流
-echo "name: Deploy Hexo
+name: Deploy Hexo
 
 on:
   push:
@@ -8,8 +7,6 @@ on:
 
 permissions:
   contents: write
-  pages: write
-  id-token: write
 
 jobs:
   build:
@@ -39,4 +36,4 @@ jobs:
           branch: main
           folder: public
           clean: true
-          token: \${{ secrets.GITHUB_TOKEN }}" > .github\workflows\deploy.yml
+          token: ${{ secrets.GITHUB_TOKEN }}
